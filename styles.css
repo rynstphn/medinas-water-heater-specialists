@@ -114,6 +114,8 @@ body::before {
 }
 
 /* ── Buttons ────────────────────────────────────────────────── */
+
+/* ── Primary ── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--display); font-weight: 700; font-size: 1.05rem;
@@ -124,7 +126,7 @@ body::before {
   box-shadow: 0 4px 20px rgba(46,141,240,.35);
   white-space: nowrap;
 }
-.btn-primary:hover {
+.btn-primary:not(.btn-flow):hover {
   background: var(--steel-h);
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(46,141,240,.45);
@@ -134,6 +136,7 @@ body::before {
 .btn-primary.btn-lg  { padding: 17px 34px; font-size: 1.1rem; }
 .btn-primary.btn-full { width: 100%; justify-content: center; }
 
+/* ── Ghost ── */
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--display); font-weight: 700; font-size: 1.05rem;
@@ -142,13 +145,14 @@ body::before {
   padding: 14px 28px; border-radius: 5px;
   transition: color .2s, border-color .2s, background .2s, transform .2s var(--spring);
 }
-.btn-ghost:hover {
+.btn-ghost:not(.btn-flow):hover {
   color: #fff; border-color: rgba(255,255,255,.5);
   background: rgba(255,255,255,.06);
   transform: translateY(-2px);
 }
 .btn-ghost.btn-lg { padding: 17px 34px; font-size: 1.1rem; }
 
+/* ── Outline ── */
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--display); font-weight: 700; font-size: .95rem;
@@ -162,6 +166,58 @@ body::before {
   background: var(--steel-dim);
   transform: translateY(-2px);
 }
+
+/* ── FlowButton — hero CTAs only ── */
+.btn-flow {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  padding-right: 48px;
+}
+.btn-flow.btn-lg { padding-right: 56px; }
+
+.btn-flow::before {
+  content: '';
+  position: absolute;
+  width: 1200px; height: 1200px;
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform .75s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+.btn-primary.btn-flow::before { background: #1161AC; }
+.btn-ghost.btn-flow::before   { background: rgba(46,141,240,.15); }
+.btn-flow:hover::before { transform: translate(-50%, -50%) scale(1); }
+
+.btn-arr-1,
+.btn-arr-2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex; align-items: center;
+  z-index: 1;
+  transition: left .7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              right .7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity .35s ease;
+}
+.btn-arr-2 { left: -2rem; opacity: 0; }
+.btn-arr-1 { right: 1.25rem; opacity: 1; }
+
+:is(.btn-primary, .btn-ghost).btn-flow:hover .btn-arr-2 { left: 1.25rem; opacity: 1; }
+:is(.btn-primary, .btn-ghost).btn-flow:hover .btn-arr-1 { right: -2.5rem; opacity: 0; }
+
+.btn-flow.btn-lg .btn-arr-1 { right: 1.5rem; }
+.btn-flow.btn-lg:hover .btn-arr-1 { right: -3rem; }
+.btn-flow.btn-lg:hover .btn-arr-2 { left: 1.5rem; }
+
+.btn-text {
+  position: relative; z-index: 1;
+  display: inline-block;
+  transition: transform .7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+:is(.btn-primary, .btn-ghost).btn-flow:hover .btn-text { transform: translateX(14px); }
 
 /* ── Section labels & headings ──────────────────────────────── */
 .sec-label {
