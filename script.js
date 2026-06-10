@@ -69,10 +69,10 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
   let cooldown  = cooldownTime;
 
   const applyMorph = (fraction) => {
-    span2.style.filter  = `blur(${Math.min(8 / fraction - 8, 24)}px)`;
+    span2.style.filter  = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
     span2.style.opacity = String(Math.pow(fraction, 0.4));
     const inv = 1 - fraction;
-    span1.style.filter  = `blur(${Math.min(8 / inv - 8, 24)}px)`;
+    span1.style.filter  = `blur(${Math.min(8 / inv - 8, 100)}px)`;
     span1.style.opacity = String(Math.pow(inv, 0.4));
   };
 
