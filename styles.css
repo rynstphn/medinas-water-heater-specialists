@@ -410,6 +410,7 @@ body::before {
   top: -200px; right: -150px;
   filter: blur(70px);
   animation: glow-drift 16s ease-in-out infinite alternate;
+  will-change: transform;
 }
 .hero-glow-2 {
   position: absolute;
@@ -418,6 +419,7 @@ body::before {
   bottom: -160px; left: -120px;
   filter: blur(90px);
   animation: glow-drift 20s ease-in-out infinite alternate-reverse;
+  will-change: transform;
 }
 .hero-glow-3 {
   position: absolute;
@@ -426,6 +428,7 @@ body::before {
   bottom: 10%; left: 30%;
   filter: blur(80px);
   animation: glow-drift 12s ease-in-out infinite alternate;
+  will-change: transform;
 }
 @keyframes glow-drift {
   from { transform: translate(0,0) scale(1); }
@@ -495,6 +498,7 @@ body::before {
   letter-spacing: inherit;
   line-height: inherit;
   text-transform: uppercase;
+  will-change: filter, opacity;
 }
 
 .hero-sub {
@@ -1228,6 +1232,12 @@ a.book-contact:hover { color: var(--t1); }
   .hero-chips { justify-content: center; }
   .hero-sub br { display: none; }
   .svc-cta { flex-direction: column; }
+
+  /* Remove SVG gooey filter on mobile — Safari renders it in software,
+     making every rAF frame expensive. Blur/opacity morph still works. */
+  .cycle-wrap { filter: none; }
+  /* Stop animating glow blobs on mobile — static blurs are fine */
+  .hero-glow-1, .hero-glow-2, .hero-glow-3 { animation: none; }
 }
 
 @media (max-width: 480px) {
