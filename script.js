@@ -57,7 +57,7 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
 
   const texts        = ['NEED IT.', 'DESERVE IT.', 'CALL PAUL.'];
   const morphTime    = 1.2;  // seconds per morph transition
-  const cooldownTime = 2.5;  // seconds to hold each word
+  const cooldownTime = 0.25;  // seconds to hold each word (matches 21st.dev demo)
 
   const spans = container.querySelectorAll('.morph-text');
   if (spans.length < 2) return;
