@@ -84,8 +84,9 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
     span1.style.opacity = '0';
   };
 
+  let rafId = null;
+
   const frame = (now) => {
-    requestAnimationFrame(frame);
     const dt            = Math.min((now - prev) / 1000, 0.1);
     prev                = now;
     const wasInCooldown = cooldown > 0;
@@ -109,12 +110,36 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
     } else {
       doCooldown();
     }
+    rafId = requestAnimationFrame(frame);
+  };
+
+  // Pause the loop while the hero is scrolled out of view. The morph is
+  // invisible offscreen, so this saves CPU/battery (notably on mobile Safari)
+  // with zero change to what's seen. dt is clamped in frame(), so the prev
+  // reset on resume keeps the animation seamless.
+  const start = () => {
+    if (rafId !== null) return;
+    prev  = performance.now();
+    rafId = requestAnimationFrame(frame);
+  };
+  const stop = () => {
+    if (rafId === null) return;
+    cancelAnimationFrame(rafId);
+    rafId = null;
   };
 
   // span2 is the visible text on load (doCooldown makes span2 opacity=1)
   span1.textContent = texts[texts.length - 1];
   span2.textContent = texts[0];
-  requestAnimationFrame(frame);
+  doCooldown();
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      entries[0].isIntersecting ? start() : stop();
+    }, { threshold: 0 }).observe(container);
+  } else {
+    start();
+  }
 })();
 
 /* ── Render Yelp reviews — infinite-scroll two columns ──────── */
