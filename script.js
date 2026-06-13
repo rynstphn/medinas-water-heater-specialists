@@ -3,40 +3,76 @@
    ============================================================ */
 
 /* ── Yelp Reviews data ──────────────────────────────────────────
-   Yelp's Fusion API (v3) prohibits displaying review text in
-   third-party interfaces per Yelp Developer ToS §8.2.
-   Reviews must be curated manually. To add, edit, or remove a
-   review, update this array. Cards are rendered into
-   #yelp-reviews-grid before the IntersectionObserver runs.
+   Real, verified reviews manually transcribed from the business's
+   Yelp page. Yelp's Fusion API (v3) can't be used to auto-pull
+   review text (ToS §8.2), so updates are done by hand here.
+   `location` is shown only for in-service-area reviewers to keep
+   the local positioning intact; omit it otherwise. Use a trailing
+   "…" when a card quotes an excerpt of a longer review.
    ────────────────────────────────────────────────────────────── */
 const YELP_REVIEWS = [
   {
     stars: 5,
-    text: "Paul came out the same day I called. My water heater was leaking and he had it replaced within a few hours. Professional, fast, and fairly priced. Highly recommend!",
-    name: "Jessica M.",
-    location: "Suisun City, CA",
-    date: "Apr 2025"
+    text: "EXCELLENT! From Paul's knowledge regarding water heaters, his reasons for working only with the Bradford White brand, his time efficient removal of the old and installation of the new, I am completely satisfied and happy with the job that Paul did in replacing my 25 year-old noisy, \"rattling\" water heater…",
+    name: "Darrin K.",
+    date: "Jun 2026"
   },
   {
     stars: 5,
-    text: "Best experience I've had with a contractor. Paul was honest about what needed to be fixed and didn't try to upsell me on anything I didn't need. My water heater is working perfectly.",
-    name: "Robert T.",
+    text: "Fast response, fare price and quality, didn't charge more for a little extra work and Paul is a very nice person. We are very happy with his work on replacing our hot water heater. I gave him a five star rating.",
+    name: "Greg M.",
+    date: "Jun 2026"
+  },
+  {
+    stars: 5,
+    text: "A leaky water heater that happens on a weekend isn't good timing but lucky for us Paul was available. Quick response and easy to deal with made coordination easy.",
+    name: "Ben V.",
+    date: "May 2026"
+  },
+  {
+    stars: 5,
+    text: "Highly responsive and manages the work and business with integrity. I would recommend this business for urgent or planned work.",
+    name: "Ed K.",
+    location: "Vallejo, CA",
+    date: "May 2026"
+  },
+  {
+    stars: 5,
+    text: "I always turn to Yelp when I need a repair or any kind of home service, and this time was no different. My water heater's pilot light wouldn't stay on, and I suspected I might need a replacement since the hot water wasn't getting hot anymore. After reading about Medina's and Paul's extensive experience, I decided to give him a call -- and I'm so glad I did!…",
+    name: "Vivian P.",
+    date: "Nov 2025"
+  },
+  {
+    stars: 5,
+    text: "Last month my in-laws (senior citizens on a fixed income) texted me to say that their water heater was leaking in a way that made me sure it needed to be replaced. Since I live one county over, I started looking through Yelp to get quotes for a like-for-like water heater replacement in Fairfield…",
+    name: "J B.",
+    date: "Nov 2025"
+  },
+  {
+    stars: 5,
+    text: "Paul was an absolute life saver today. Our water heater decided to quit and leak on us, so you can imagine we were left in a predicament. Paul not only was responsive, but transparent in pricing and process, which was really refreshing…",
+    name: "Gian N.",
+    location: "Napa, CA",
+    date: "Oct 2025"
+  },
+  {
+    stars: 5,
+    text: "Medina's Water Heater Specialists is definitely a business we will recommend to others and use again! Paul was amazing!! He responded quickly, provided a clear breakdown of services and up-front pricing, didn't try any shady up-selling of services we don't need…",
+    name: "Nic L.",
     location: "Fairfield, CA",
-    date: "Mar 2025"
+    date: "Sep 2025"
   },
   {
     stars: 5,
-    text: "Woke up to no hot water on a Monday morning and was stressed. Called Paul and he was at my house by noon. Quick diagnosis, same-day fix. Couldn't be happier with the service.",
-    name: "Amanda L.",
-    location: "Vacaville, CA",
-    date: "Feb 2025"
+    text: "From the first call to the installation, I received quality and professional service. Robert explained each step of the installation process and was able to finish the installation faster than I expected. I would highly recommend this company if you need service.",
+    name: "Maid B.",
+    date: "Aug 2025"
   },
   {
     stars: 5,
-    text: "Paul installed a new tankless water heater for us. He explained all our options, helped us choose the right unit for our family, and the installation was flawless. 10/10.",
-    name: "David & Sandra K.",
-    location: "Suisun City, CA",
-    date: "Jan 2025"
+    text: "Saved me 2000 by investigating an uncommon fix to my water heater, that worked perfectly!!! Leak is totally gone!!",
+    name: "Amanda H.",
+    date: "May 2025"
   }
 ];
 
@@ -157,7 +193,7 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
         <div>
           <cite class="reviewer-name">${r.name}</cite>
           <div class="reviewer-meta">
-            <span class="yelp-badge">Yelp</span> · ${r.location}${r.date ? ' · ' + r.date : ''}
+            <span class="yelp-badge">Yelp</span>${r.location ? ' · ' + r.location : ''}${r.date ? ' · ' + r.date : ''}
           </div>
         </div>
       </footer>
