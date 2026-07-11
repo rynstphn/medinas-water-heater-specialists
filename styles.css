@@ -1293,20 +1293,6 @@ a.book-contact:hover { color: var(--t1); }
 .footer-phone  { font-weight: 600; }   /* base was 900 — Plex Mono max is 700 */
 
 /* ── Drop separator (brand water-drop motif) ────────────────── */
-.drop-divider {
-  display: flex; align-items: center; justify-content: center;
-  gap: 15px; margin: clamp(30px, 4vw, 44px) auto;
-}
-.drop-divider .dd-rule {
-  width: clamp(36px, 8vw, 64px); height: 1px; flex-shrink: 0;
-  background: linear-gradient(90deg, transparent, var(--brass));
-  opacity: .55;
-}
-.drop-divider .dd-rule:last-child {
-  background: linear-gradient(90deg, var(--brass), transparent);
-}
-.drop-divider .dd-drop { color: var(--brass); flex-shrink: 0; display: block; }
-
 /* Drop used as the bullet in the footer locality line */
 .drop-sep {
   display: inline-block; width: 6px; height: 8px;
