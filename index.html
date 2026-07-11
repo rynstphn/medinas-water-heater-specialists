@@ -13,11 +13,13 @@
   <meta property="og:title" content="Medina's Water Heater Specialists | Suisun City, CA">
   <meta property="og:description"
     content="Fast, affordable water heater installation & repair. Call Paul at (707) 336-2290.">
-  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" type="image/png" href="assets/brand/medina-badge.png">
+  <link rel="apple-touch-icon" href="assets/brand/medina-badge-2x.png">
+  <meta property="og:image" content="assets/brand/medina-primary-stacked.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Aleo:wght@700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -50,7 +52,7 @@
     ],
     "serviceType": ["Water Heater Installation","Water Heater Repair","Water Heater Replacement","Tankless Water Heater","Heat Pump Water Heater","Water Heater Maintenance"],
     "priceRange": "$$",
-    "image": "logo.png"
+    "image": "assets/brand/medina-primary-stacked.png"
   }
   </script>
   <!-- Vercel Web Analytics -->
@@ -80,7 +82,9 @@
   <header id="site-header">
     <div class="hdr-inner">
       <a href="#" class="hdr-logo" aria-label="Medina's Water Heater Specialists — Home">
-        <img src="logo.png" alt="" class="hdr-logo-img" width="38" height="38">
+        <img src="assets/brand/medina-badge.png"
+          srcset="assets/brand/medina-badge-2x.png 2x, assets/brand/medina-badge-3x.png 3x"
+          alt="" class="hdr-logo-img" width="38" height="38">
         <div class="hdr-logo-text">
           <span class="hdr-name">Medina's</span>
           <span class="hdr-sub">Water Heater Specialists</span>
@@ -314,7 +318,9 @@
         <div class="about-grid">
           <div class="about-visual reveal-left">
             <div class="about-frame">
-              <img src="logo.png" alt="Paul Medina – Water Heater Specialist" class="about-logo">
+              <img src="assets/brand/medina-reversed-stacked.png"
+                srcset="assets/brand/medina-reversed-stacked-2x.png 2x, assets/brand/medina-reversed-stacked-3x.png 3x"
+                alt="Medina's Water Heater Specialists" class="about-logo">
               <div class="about-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path
@@ -603,9 +609,10 @@
         </div>
         <h2 class="sec-h reveal-up" style="--d:.08s">5 Stars Across<br>the Board</h2>
         <div class="yelp-rating reveal-up" style="--d:.16s">
-          <span class="yelp-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="yelp-stars" aria-label="5 out of 5"><i class="drop-star"></i><i class="drop-star"></i><i class="drop-star"></i><i class="drop-star"></i><i class="drop-star"></i></span>
           <span class="yelp-label">5.0 on Yelp</span>
         </div>
+
 
         <!--
       YELP REVIEWS — Manually curated; rendered from YELP_REVIEWS array in script.js.
@@ -825,7 +832,9 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="#" class="footer-logo" aria-label="Home">
-          <img src="logo.png" alt="" width="38" height="38">
+          <img src="assets/brand/medina-badge.png"
+            srcset="assets/brand/medina-badge-2x.png 2x, assets/brand/medina-badge-3x.png 3x"
+            alt="" width="38" height="38">
           <div>
             <span class="footer-name">Medina's</span>
             <span class="footer-sub">Water Heater Specialists</span>
@@ -884,7 +893,7 @@
 
     <div class="footer-bottom">
       <p>© <span id="year"></span> Medina's Water Heater Specialists · Suisun City, CA</p>
-      <p>Serving Suisun City · Fairfield · Vacaville · Benicia · Vallejo · Solano County</p>
+      <p class="footer-locality">Serving Suisun City<i class="drop-sep"></i>Fairfield<i class="drop-sep"></i>Vacaville<i class="drop-sep"></i>Benicia<i class="drop-sep"></i>Vallejo<i class="drop-sep"></i>Solano County</p>
     </div>
   </footer>
 

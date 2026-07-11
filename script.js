@@ -13,6 +13,12 @@
 const YELP_REVIEWS = [
   {
     stars: 5,
+    text: "Paul arrived promptly and ready to go to work. Great communication and very competent. He warranted his workmanship and explained in detail all the improvements he would make to our existing 30-year-old water heater setup. We now have a state-of-the-art new system, and we will be calling Paul every year to complete a system flushing to keep the new water heater running longer. Highly recommended.",
+    name: "Will L.",
+    date: "Jul 2026"
+  },
+  {
+    stars: 5,
     text: "EXCELLENT! From Paul's knowledge regarding water heaters, his reasons for working only with the Bradford White brand, his time efficient removal of the old and installation of the new, I am completely satisfied and happy with the job that Paul did in replacing my 25 year-old noisy, \"rattling\" water heater…",
     name: "Darrin K.",
     date: "Jun 2026"
@@ -186,7 +192,7 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
 
   const renderCard = (r) => `
     <article class="review-card">
-      <div class="review-stars" aria-label="${r.stars} stars">${'★'.repeat(r.stars)}</div>
+      <div class="review-stars" aria-label="${r.stars} out of 5">${'<i class="drop-star"></i>'.repeat(r.stars)}</div>
       <blockquote>${r.text}</blockquote>
       <footer class="review-footer">
         <div class="reviewer-avatar">${r.name[0]}</div>
@@ -232,7 +238,7 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
           .slice(0, 4)
           .map(r => `
             <article class="review-card">
-              <div class="review-stars" aria-label="${r.rating} stars">${'★'.repeat(r.rating)}</div>
+              <div class="review-stars" aria-label="${r.rating} out of 5">${'<i class="drop-star"></i>'.repeat(r.rating)}</div>
               <blockquote>${r.text}</blockquote>
               <footer class="review-footer">
                 <div class="reviewer-avatar">${r.author_name[0]}</div>

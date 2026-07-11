@@ -1,7 +1,8 @@
 /* ============================================================
    MEDINA'S WATER HEATER SPECIALISTS
    Aesthetic: Clean Steel — Navy Industrial Professional
-   Display: Barlow Condensed · Body: DM Sans
+   Type system (brand): Aleo Bold (wordmark) · Libre Franklin
+   (display + body) · IBM Plex Mono (technical labels & data)
    ============================================================ */
 
 /* ── Variables ──────────────────────────────────────────────── */
@@ -11,6 +12,9 @@
   --navy-3: #152846;
   --navy-4: #1C3357;
   --navy-5: #234068;
+
+  --brass:      #B8924A;
+  --brass-h:    #cba55e;
 
   --steel:      #2E8DF0;
   --steel-h:    #1B7BD6;
@@ -33,8 +37,10 @@
   --bd:  rgba(255,255,255,.07);
   --bd2: rgba(255,255,255,.12);
 
-  --display: 'Barlow Condensed', system-ui, sans-serif;
-  --sans:    'DM Sans', system-ui, sans-serif;
+  --display:  'Libre Franklin', system-ui, sans-serif;
+  --sans:     'Libre Franklin', system-ui, sans-serif;
+  --mono:     'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --wordmark: 'Aleo', Georgia, 'Times New Roman', serif;
 
   --max:      1160px;
   --sp:       clamp(80px, 10vw, 136px);
@@ -240,8 +246,8 @@ body::before {
 
 .sec-h {
   font-family: var(--display); font-weight: 800;
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  letter-spacing: .01em; line-height: 1.0;
+  font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+  letter-spacing: -.01em; line-height: 1.04;
   background: linear-gradient(170deg, #EDF4FB 0%, #7AAEC8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -284,8 +290,8 @@ body::before {
   display: flex; align-items: center; gap: 11px; flex-shrink: 0;
 }
 .hdr-logo-img {
-  width: 38px; height: 38px; border-radius: 8px;
-  object-fit: contain; background: var(--navy-4);
+  width: 38px; height: 38px;
+  object-fit: contain; background: none;
   transition: transform .3s var(--spring);
 }
 .hdr-logo:hover .hdr-logo-img { transform: scale(1.07); }
@@ -474,8 +480,8 @@ body::before {
 
 .hero-h1 {
   font-family: var(--display); font-weight: 900;
-  font-size: clamp(3.4rem, 9vw, 7.5rem);
-  letter-spacing: .01em; line-height: .93;
+  font-size: clamp(2.9rem, 7.4vw, 6.1rem);
+  letter-spacing: -.015em; line-height: .96;
   color: var(--t1);
   margin-bottom: 34px;
   text-transform: uppercase;
@@ -682,8 +688,7 @@ body::before {
   box-shadow: var(--shadow-lg);
 }
 .about-logo {
-  max-width: 180px;
-  filter: brightness(1.05);
+  max-width: 300px; width: 100%;
   position: relative; z-index: 1;
 }
 .about-frame::after {
@@ -942,7 +947,7 @@ a.book-contact:hover { color: var(--t1); }
   display: flex; align-items: center; gap: 10px;
   margin-bottom: clamp(36px, 4vw, 52px);
 }
-.yelp-stars { font-size: 1.4rem; color: #E8101D; letter-spacing: 2px; }
+.yelp-stars { font-size: 1.4rem; letter-spacing: 0; line-height: 1; }
 .yelp-label {
   font-family: var(--display); font-size: .88rem; font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase;
@@ -995,7 +1000,7 @@ a.book-contact:hover { color: var(--t1); }
   box-shadow: var(--shadow-md);
   border-color: var(--steel-mid);
 }
-.review-stars { font-size: 1.05rem; color: #E8101D; letter-spacing: 1px; }
+.review-stars { font-size: 1.05rem; letter-spacing: 0; line-height: 1; }
 .review-card blockquote {
   font-family: var(--sans); font-size: .95rem;
   line-height: 1.72; color: var(--t1); flex: 1;
@@ -1137,7 +1142,7 @@ a.book-contact:hover { color: var(--t1); }
 .footer-logo {
   display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
 }
-.footer-logo img { width: 36px; height: 36px; border-radius: 6px; background: var(--navy-4); object-fit: contain; }
+.footer-logo img { width: 38px; height: 38px; object-fit: contain; }
 .footer-name { display: block; font-family: var(--display); font-size: .95rem; font-weight: 800; color: var(--t1); letter-spacing: .04em; text-transform: uppercase; }
 .footer-sub  { display: block; font-family: var(--sans); font-size: .62rem; color: var(--t3); }
 
@@ -1195,7 +1200,7 @@ a.book-contact:hover { color: var(--t1); }
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
   font-family: var(--display); font-size: .72rem; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase;
-  color: var(--t4);
+  color: var(--t3);
 }
 
 @media (max-width: 980px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
@@ -1243,3 +1248,79 @@ a.book-contact:hover { color: var(--t1); }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal-up, .reveal-left, .reveal-right { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   BRAND TYPE OVERRIDES — Aleo wordmark · IBM Plex Mono labels
+   Placed last so these win over the base --display declarations.
+   ============================================================ */
+
+/* Aleo Bold — the "Medina's" wordmark wherever it's set as live text */
+.hdr-name,
+.footer-name {
+  font-family: var(--wordmark);
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+/* IBM Plex Mono — technical micro-labels, eyebrows & data lines.
+   (Plex Mono tops out at 700, so heavier weights are capped.) */
+.hero-eyebrow,
+.sec-num,
+.sec-tag,
+.stat-l,
+.about-stat-l,
+.hchip,
+.footer-col h4,
+.footer-bottom,
+.bc-label,
+.reviewer-meta,
+.hdr-phone,
+.footer-phone,
+.bc-val,
+.footer-addr,
+.footer-hours {
+  font-family: var(--mono);
+}
+
+/* Trim Plex Mono's natural width on the letter-spaced labels */
+.sec-tag       { letter-spacing: .08em; }
+.hero-eyebrow  { letter-spacing: .10em; }
+.footer-col h4 { letter-spacing: .12em; font-weight: 600; }
+.hchip         { letter-spacing: .05em; font-weight: 500; }
+.footer-bottom { letter-spacing: .04em; font-weight: 500; }
+.stat-l,
+.about-stat-l  { letter-spacing: .06em; }
+.footer-phone  { font-weight: 600; }   /* base was 900 — Plex Mono max is 700 */
+
+/* ── Drop separator (brand water-drop motif) ────────────────── */
+.drop-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 15px; margin: clamp(30px, 4vw, 44px) auto;
+}
+.drop-divider .dd-rule {
+  width: clamp(36px, 8vw, 64px); height: 1px; flex-shrink: 0;
+  background: linear-gradient(90deg, transparent, var(--brass));
+  opacity: .55;
+}
+.drop-divider .dd-rule:last-child {
+  background: linear-gradient(90deg, var(--brass), transparent);
+}
+.drop-divider .dd-drop { color: var(--brass); flex-shrink: 0; display: block; }
+
+/* Drop used as the bullet in the footer locality line */
+.drop-sep {
+  display: inline-block; width: 6px; height: 8px;
+  margin: 0 9px; vertical-align: middle; opacity: .85;
+  background: center/contain no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 32'%3E%3Cpath d='M12 2 C12 2 4 13 4 20 a8 8 0 0 0 16 0 C20 13 12 2 12 2 Z' fill='%23B8924A'/%3E%3C/svg%3E");
+}
+
+/* Brass water-drop used as the rating glyph (replaces red Yelp stars).
+   em-sized so it scales to whatever font-size the rating row uses. */
+.drop-star {
+  display: inline-block; width: .72em; height: .95em;
+  margin-right: .16em; vertical-align: -.12em;
+  background: center/contain no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 32'%3E%3Cpath d='M12 2 C12 2 4 13 4 20 a8 8 0 0 0 16 0 C20 13 12 2 12 2 Z' fill='%23B8924A'/%3E%3C/svg%3E");
+}
+.drop-star:last-child { margin-right: 0; }
