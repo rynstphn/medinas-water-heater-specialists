@@ -626,6 +626,15 @@
         </div>
 
         <!--
+      MOBILE CAROUSEL — swipeable, one review at a time (shown ≤680px).
+      Uses native CSS scroll-snap; populated from YELP_REVIEWS in script.js.
+    -->
+        <div class="reviews-carousel" aria-label="Customer reviews carousel" aria-roledescription="carousel">
+          <div class="reviews-track" id="reviews-track"></div>
+          <div class="reviews-dots" id="reviews-dots" role="tablist" aria-label="Choose a review"></div>
+        </div>
+
+        <!--
       GOOGLE REVIEWS — Places API Integration
       1. Find your Place ID via Google Maps Platform Place ID Finder tool
       2. Enable Places API in Google Cloud Console; create a browser-restricted API key
@@ -834,8 +843,8 @@
         <a href="#" class="footer-logo" aria-label="Home">
           <img src="assets/brand/medina-badge.png"
             srcset="assets/brand/medina-badge-2x.png 2x, assets/brand/medina-badge-3x.png 3x"
-            alt="" width="38" height="38">
-          <div>
+            alt="" width="48" height="48">
+          <div class="footer-logo-text">
             <span class="footer-name">Medina's</span>
             <span class="footer-sub">Water Heater Specialists</span>
           </div>

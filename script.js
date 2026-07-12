@@ -214,6 +214,37 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
   // Duplicate each group so the column loops seamlessly at -50%
   if (col1) col1.innerHTML = [...group1, ...group1].map(renderCard).join('');
   if (col2) col2.innerHTML = [...group2, ...group2].map(renderCard).join('');
+
+  /* ── Mobile carousel: all reviews, one per swipe, with dots ── */
+  const track = document.getElementById('reviews-track');
+  const dots  = document.getElementById('reviews-dots');
+  if (track && dots) {
+    track.innerHTML = YELP_REVIEWS.map(renderCard).join('');
+    dots.innerHTML  = YELP_REVIEWS.map((r, i) =>
+      `<button type="button" role="tab" aria-label="Review ${i + 1} of ${YELP_REVIEWS.length}"${i === 0 ? ' aria-selected="true"' : ''}></button>`
+    ).join('');
+
+    const cards      = Array.from(track.children);
+    const dotButtons = Array.from(dots.children);
+
+    const setActive = (i) => dotButtons.forEach((d, j) =>
+      d.setAttribute('aria-selected', j === i ? 'true' : 'false'));
+
+    // Tap a dot → snap to that card
+    dotButtons.forEach((d, i) => d.addEventListener('click', () => {
+      track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    }));
+
+    // Highlight the dot for whichever card is centered in view
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(cards.indexOf(e.target));
+        });
+      }, { root: track, threshold: 0.6 });
+      cards.forEach((c) => io.observe(c));
+    }
+  }
 })();
 
 /* ── Fetch Google reviews (activates when Place ID is configured) */
