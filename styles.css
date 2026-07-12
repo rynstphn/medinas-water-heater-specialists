@@ -1260,12 +1260,28 @@ a.book-contact:hover { color: var(--t1); }
 @media (max-width: 768px) { .fab-call { display: flex; } }
 
 /* ── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 768px) {
+
+/* Collapse to the hamburger header below 1024px. The larger 58px logo
+   makes the full desktop nav too wide for phone landscapes (≤932px), so
+   they get the compact header + a scaled-down logo that fits. */
+@media (max-width: 1024px) {
   :root { --header-h: 60px; }
+  .hdr-inner { gap: 14px; }
   .hdr-nav, .hdr-phone { display: none; }
   .hdr-actions { margin-left: auto; }
   .nav-toggle { display: flex; }
 
+  .hdr-logo-img { width: 44px; height: 44px; }
+  .hdr-name { font-size: 1.05rem; }
+  .hdr-sub  { font-size: .62rem; }
+}
+
+/* Smallest phones: drop the wordmark, keep the badge, so nothing clips */
+@media (max-width: 380px) {
+  .hdr-logo-text { display: none; }
+}
+
+@media (max-width: 768px) {
   .hero-h1 { font-size: clamp(2.8rem, 11vw, 4.8rem); }
   .hero-inner { align-items: center; text-align: center; }
   .hero-eyebrow { justify-content: center; }
