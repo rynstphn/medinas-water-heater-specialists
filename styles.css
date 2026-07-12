@@ -233,8 +233,8 @@ body::before {
 .sec-num {
   font-family: var(--display); font-size: 1rem; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase;
-  color: var(--steel);
-  border: 1px solid var(--steel-mid);
+  color: var(--brass);
+  border: 1px solid rgba(184,146,74,.32);
   padding: 4px 10px; border-radius: 3px;
   line-height: 1.5;
 }
@@ -290,7 +290,7 @@ body::before {
   display: flex; align-items: center; gap: 13px; flex-shrink: 0;
 }
 .hdr-logo-img {
-  width: 50px; height: 50px;
+  width: 58px; height: 58px;
   object-fit: contain; background: none;
   transition: transform .3s var(--spring);
 }
@@ -302,7 +302,7 @@ body::before {
 }
 .hdr-sub {
   font-family: var(--sans); font-size: .7rem; font-weight: 400;
-  color: var(--t3); letter-spacing: .02em;
+  color: var(--brass); letter-spacing: .02em;
 }
 
 /* Sliding pill nav (menu.md adaptation) */
@@ -1110,7 +1110,7 @@ a.book-contact:hover { color: var(--t1); }
   background: rgba(46,141,240,.08);
   transform: translateY(-2px);
 }
-.area-city svg { color: var(--steel); flex-shrink: 0; }
+.area-city svg { color: var(--brass); flex-shrink: 0; }
 
 .area-note {
   font-family: var(--sans); font-size: .93rem; color: var(--t3);
@@ -1176,10 +1176,12 @@ a.book-contact:hover { color: var(--t1); }
 .footer-logo {
   display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
 }
-.footer-logo img { width: 48px; height: 48px; object-fit: contain; }
+/* Badge PNG carries ~9.8% transparent padding; pull left so the visible
+   circle optically aligns with the tagline text below (48px × .098 ≈ 4.7px). */
+.footer-logo img { width: 48px; height: 48px; object-fit: contain; margin-left: -4.7px; }
 .footer-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .footer-name { display: block; font-family: var(--display); font-size: 1.22rem; font-weight: 800; color: var(--t1); letter-spacing: .04em; text-transform: uppercase; }
-.footer-sub  { display: block; font-family: var(--sans); font-size: .68rem; color: var(--t3); }
+.footer-sub  { display: block; font-family: var(--sans); font-size: .68rem; color: var(--brass); }
 
 .footer-tagline {
   font-family: var(--sans); font-size: .86rem; line-height: 1.7;
