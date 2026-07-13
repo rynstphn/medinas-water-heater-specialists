@@ -175,12 +175,28 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
   span2.textContent = texts[0];
   doCooldown();
 
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver((entries) => {
-      entries[0].isIntersecting ? start() : stop();
-    }, { threshold: 0 }).observe(container);
+  // Wire up the loop (paused when the hero scrolls out of view).
+  const observe = () => {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries[0].isIntersecting ? start() : stop();
+      }, { threshold: 0 }).observe(container);
+    } else {
+      start();
+    }
+  };
+
+  // Defer the first morph until after load. The hero headline paints in its
+  // final sharp state immediately; animating its opacity/blur during load
+  // makes the blurred text the LCP element (blur inflates the paint area),
+  // pushing LCP out ~2.6s. Starting post-load lets LCP lock onto the sharp
+  // paint. Honors reduced-motion by never starting the animation.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // leave the static first word in place
+  } else if (document.readyState === 'complete') {
+    setTimeout(observe, 250);
   } else {
-    start();
+    window.addEventListener('load', () => setTimeout(observe, 250), { once: true });
   }
 })();
 
