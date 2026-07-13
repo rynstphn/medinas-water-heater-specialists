@@ -70,8 +70,10 @@ body {
 }
 img { display: block; max-width: 100%; height: auto; }
 /* <picture> is layout-transparent so existing img styles still apply to the
-   inner <img> when it's wrapped for WebP delivery */
+   inner <img> when it's wrapped for WebP delivery. Hide <source> so it isn't
+   treated as a flex item (which would let flex `gap` push the image over). */
 picture { display: contents; }
+picture > source { display: none; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { font: inherit; cursor: pointer; border: none; background: none; }
@@ -295,9 +297,19 @@ body::before {
 .hdr-logo-img {
   width: 58px; height: 58px;
   object-fit: contain; background: none;
-  transition: transform .3s var(--spring);
+  /* Compensate the badge PNG's ~9.8% transparent padding so the visible circle
+     sticks out past the content's LEFT edge by the same 8px the Book Now button
+     sticks out on the RIGHT (58px × .098 ≈ 5.7px). Verified in headless Chrome. */
+  margin-left: -5.7px;
+  transition: filter .3s var(--ease);
 }
-.hdr-logo:hover .hdr-logo-img { transform: scale(1.07); }
+.hdr-logo:hover .hdr-logo-img { filter: drop-shadow(0 0 8px rgba(184,146,74,.65)); }
+/* Vertical rule between the badge and wordmark, mirroring the official
+   horizontal lockup */
+.hdr-divider {
+  width: 1px; height: 34px; flex-shrink: 0;
+  background: rgba(255,255,255,.28);
+}
 .hdr-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .hdr-name {
   font-family: var(--display); font-size: 1.3rem; font-weight: 800;
@@ -1288,9 +1300,9 @@ a.book-contact:hover { color: var(--t1); }
   .hdr-sub  { font-size: .62rem; }
 }
 
-/* Smallest phones: drop the wordmark, keep the badge, so nothing clips */
+/* Smallest phones: drop the wordmark + divider, keep the badge, so nothing clips */
 @media (max-width: 380px) {
-  .hdr-logo-text { display: none; }
+  .hdr-logo-text, .hdr-divider { display: none; }
 }
 
 @media (max-width: 768px) {
