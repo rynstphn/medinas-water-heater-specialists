@@ -472,13 +472,22 @@ body::before {
   margin-bottom: 28px;
 }
 .eyebrow-dot {
+  position: relative;
   width: 7px; height: 7px; border-radius: 50%;
+  background: var(--steel);
+}
+/* Pulsing halo via a composited transform/opacity animation (was an
+   animated box-shadow, which can't be GPU-composited). */
+.eyebrow-dot::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
   background: var(--steel);
   animation: pulse-dot 2.4s ease infinite;
 }
 @keyframes pulse-dot {
-  0%,100% { box-shadow: 0 0 0 0 rgba(46,141,240,.6); }
-  50%      { box-shadow: 0 0 0 8px rgba(46,141,240,0); }
+  0%,100% { transform: scale(1);   opacity: .6; }
+  50%     { transform: scale(3.3); opacity: 0; }
 }
 
 .hero-h1 {
