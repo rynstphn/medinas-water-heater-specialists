@@ -91,9 +91,13 @@
   <header id="site-header">
     <div class="hdr-inner">
       <a href="#" class="hdr-logo" aria-label="Medina's Water Heater Specialists — Home">
-        <img src="assets/brand/png/medina-badge.png"
-          srcset="assets/brand/png/medina-badge-2x.png 2x, assets/brand/png/medina-badge-3x.png 3x"
-          alt="" class="hdr-logo-img" width="38" height="38">
+        <picture>
+          <source type="image/webp"
+            srcset="assets/brand/png/medina-badge.webp 1x, assets/brand/png/medina-badge-2x.webp 2x, assets/brand/png/medina-badge-3x.webp 3x">
+          <img src="assets/brand/png/medina-badge.png"
+            srcset="assets/brand/png/medina-badge-2x.png 2x, assets/brand/png/medina-badge-3x.png 3x"
+            alt="" class="hdr-logo-img" width="38" height="38">
+        </picture>
         <div class="hdr-logo-text">
           <span class="hdr-name">Medina's</span>
           <span class="hdr-sub">Water Heater Specialists</span>
@@ -327,10 +331,14 @@
         <div class="about-grid">
           <div class="about-visual reveal-left">
             <div class="about-frame">
-              <img src="assets/brand/png/medina-reversed-stacked.png"
-                srcset="assets/brand/png/medina-reversed-stacked-2x.png 2x, assets/brand/png/medina-reversed-stacked-3x.png 3x"
-                alt="Medina's Water Heater Specialists" class="about-logo"
-                width="300" height="188" loading="lazy" decoding="async">
+              <picture>
+                <source type="image/webp"
+                  srcset="assets/brand/png/medina-reversed-stacked.webp 1x, assets/brand/png/medina-reversed-stacked-2x.webp 2x, assets/brand/png/medina-reversed-stacked-3x.webp 3x">
+                <img src="assets/brand/png/medina-reversed-stacked.png"
+                  srcset="assets/brand/png/medina-reversed-stacked-2x.png 2x, assets/brand/png/medina-reversed-stacked-3x.png 3x"
+                  alt="Medina's Water Heater Specialists" class="about-logo"
+                  width="300" height="188" loading="lazy" decoding="async">
+              </picture>
               <div class="about-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path
@@ -851,9 +859,13 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="#" class="footer-logo" aria-label="Home">
-          <img src="assets/brand/png/medina-badge.png"
-            srcset="assets/brand/png/medina-badge-2x.png 2x, assets/brand/png/medina-badge-3x.png 3x"
-            alt="" width="48" height="48">
+          <picture>
+            <source type="image/webp"
+              srcset="assets/brand/png/medina-badge.webp 1x, assets/brand/png/medina-badge-2x.webp 2x, assets/brand/png/medina-badge-3x.webp 3x">
+            <img src="assets/brand/png/medina-badge.png"
+              srcset="assets/brand/png/medina-badge-2x.png 2x, assets/brand/png/medina-badge-3x.png 3x"
+              alt="" width="48" height="48">
+          </picture>
           <div class="footer-logo-text">
             <span class="footer-name">Medina's</span>
             <span class="footer-sub">Water Heater Specialists</span>
@@ -923,7 +935,7 @@
     </svg>
   </a>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 

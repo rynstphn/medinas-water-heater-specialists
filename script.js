@@ -316,11 +316,20 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
 })();
 
 /* ── Sticky header ─────────────────────────────────────────── */
+/* Toggle .scrolled via IntersectionObserver on a top sentinel instead of
+   reading window.scrollY on every scroll event — reading scrollY forces a
+   layout reflow (Lighthouse flagged ~67ms of forced reflow here). */
 (function () {
   const header = document.getElementById('site-header');
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  if (!header) return;
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:24px;left:0;width:1px;height:1px;pointer-events:none;';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(
+    ([entry]) => header.classList.toggle('scrolled', !entry.isIntersecting),
+    { threshold: 0 }
+  ).observe(sentinel);
 })();
 
 /* ── Mobile menu ────────────────────────────────────────────── */
