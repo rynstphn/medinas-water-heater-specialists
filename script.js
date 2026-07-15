@@ -619,6 +619,61 @@ const GOOGLE_API_KEY  = 'YOUR_API_KEY_HERE';   // ← paste restricted API key
   if (el) el.textContent = new Date().getFullYear();
 })();
 
+/* ── Hero wordmark → header logo handoff ────────────────────── */
+/* No move animation: the hero wordmark just scrolls up out of view with the
+   page like normal content, and the header logo fades in to take its place.
+   The fade runs as the wordmark slides up behind the header (from its top
+   reaching the header border to it fully passing under), so the header logo
+   "appears" exactly as the hero wordmark leaves — with zero overlap. */
+(function () {
+  const flyer   = document.querySelector('.hero-wordmark');
+  const hdrLogo = document.querySelector('.hdr-logo');
+  const header  = document.getElementById('site-header');
+  if (!flyer || !hdrLogo || !header) return;
+
+  // Reduced motion: no fade. Just keep the header logo visible.
+  if (window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    hdrLogo.style.opacity = '1';
+    return;
+  }
+
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // start: scrollY at which the wordmark's top meets the header's bottom border.
+  // span:  the wordmark's height — the fade completes as it fully slides under.
+  let start = 0, span = 1;
+
+  function measure() {
+    const r = flyer.getBoundingClientRect();
+    const sy = r.top + window.scrollY;
+    const H  = header.getBoundingClientRect().height || 70;
+    start = sy - H;
+    span  = Math.max(1, r.height);
+  }
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const ho = clamp((window.scrollY - start) / span, 0, 1);
+    hdrLogo.style.opacity = String(ho);
+    hdrLogo.style.pointerEvents = ho > 0.5 ? '' : 'none';
+  }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+
+  measure();
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
+  window.addEventListener('load',   () => { measure(); update(); }, { once: true });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => { measure(); update(); });
+  }
+})();
+
 /* ── Form field error style injection ───────────────────────── */
 (function () {
   const style = document.createElement('style');

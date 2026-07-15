@@ -31,6 +31,9 @@
       href="https://fonts.googleapis.com/css2?family=Aleo:wght@700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap">
   </noscript>
   <link rel="stylesheet" href="styles.css">
+  <!-- Flag JS so the header logo can start hidden (it's revealed as the hero
+       wordmark morphs into it on scroll). Set before paint to avoid a flash. -->
+  <script>document.documentElement.classList.add('js-morph');</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -162,7 +165,18 @@
       <div class="hero-ghost" aria-hidden="true">SPECIALIST</div>
 
       <div class="hero-inner">
-        <div class="hero-eyebrow reveal-up">
+        <div class="hero-wordmark reveal-up" role="img" aria-label="Medina's Water Heater Specialists">
+          <img src="assets/brand/svg/medina-badge-hero.svg" alt="" class="hw-badge" width="86" height="86">
+
+          <span class="hw-name" aria-hidden="true">Medina's</span>
+          <span class="hw-sub" aria-hidden="true">
+            <i class="hw-rule"></i>
+            Water Heater Specialists
+            <i class="hw-rule"></i>
+          </span>
+        </div>
+
+        <div class="hero-eyebrow reveal-up" style="--d:.06s">
           <span class="eyebrow-dot"></span>
           Serving Suisun City &amp; Solano County
         </div>
