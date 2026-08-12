@@ -2,4 +2,12 @@
 .claude/
 node_modules/
 
+# Source logo package (large; production assets live in assets/brand/)
 Logo/*.zip
+
+# Duplicate of assets/brand/ — working export folder, not the served assets
+Logo/exports/
+
+# Playwright MCP debug artifacts (page snapshots + console logs)
+.playwright-mcp/
+listing-*.md
